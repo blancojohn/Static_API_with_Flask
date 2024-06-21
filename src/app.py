@@ -38,6 +38,16 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@app.route('/member/<int:member_id>', metohds=['GET'])
+def handle_member():
+
+    return jsonify({"messagge": "probando ruta"})
+
+@app.route('/member', methods=['POST'])
+def add_member():
+
+    return jsonify({""})
+
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
