@@ -5,15 +5,26 @@ import os
 from flask import Flask, request, jsonify, url_for
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
-from datastructures import FamilyStructure
+from datastructures import FamilyStructure, Member
 #from models import Person
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 CORS(app)
 
+text_age= "Years old"
 # create the jackson family object
 jackson_family = FamilyStructure("Jackson")
+member1= Member(jackson_family._generateId(), "John", f"33 {text_age}", [7, 3, 12])
+jackson_family.add_member(member1)
+
+member2= Member(jackson_family._generateId(), "Jane", f"35 {text_age}", [10, 14, 3])
+jackson_family.add_member(member2)
+
+member3= Member(jackson_family._generateId(), "Jimmy", f"5 {text_age}", [1])
+jackson_family.add_member(member3)
+
+print(jackson_family._members)
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -38,7 +49,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@app.route('/member/<int:member_id>', metohds=['GET'])
+""" @app.route('/member/<int:member_id>', metohds=['GET'])
 def handle_member():
 
     return jsonify({"messagge": "probando ruta"})
@@ -46,7 +57,7 @@ def handle_member():
 @app.route('/member', methods=['POST'])
 def add_member():
 
-    return jsonify({""})
+    return jsonify({""}) """
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
