@@ -38,13 +38,23 @@ class FamilyStructure:
         return f"<Family structure of: family: {self.last_name}>"
  """    
 class Member():
-    def __init__(self, id, first_name, age, lucky_numbers):
+    def __init__(self, id, first_name, last_name, age, lucky_numbers):
         self.id= id
         self.first_name= first_name
+        self.last_name= last_name
         self.age= age
         self.lucky_numbers= lucky_numbers
 
+    def  serialize(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "age": self.age,
+            "lucky_numbers": self.lucky_numbers
+        }
+
     def __repr__(self):
-        return f"<Member: id: {self.id} first_name: {self.first_name} age: {self.age} lucky_numbers: {self.lucky_numbers}>"
+        return f"<Member: id: {self.id} first_name: {self.first_name} last_name: {self.last_name} age: {self.age} lucky_numbers: {self.lucky_numbers}>"
 
  
